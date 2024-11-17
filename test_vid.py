@@ -1,11 +1,18 @@
 import numpy as np
 from ultralytics import YOLO
+import tkinter as tk
+from tkinter import filedialog
+from PIL import Image, ImageTk
 import cv2
 
+from convert import filename
+
 # Đường dẫn đến video nguồn và video đầu ra
-video_path = "D:/AT Energy/test_video.mp4"
-output_video_path = "D:/AT Energy/output_video.mp4"
-model_path = "D:/WorkSpace/runs/detect/train24/weights/best.pt"
+# video_path = "D:/AT Energy/test_video.mp4"
+output_video_path = "D:/WorkSpace/PycharmProjects/NhanDangBienSo/output/output_video.mp4"
+model_path = "D:/WorkSpace/PycharmProjects/NhanDangBienSo/model.pt"
+
+
 
 if __name__ == '__main__':
     # Load mô hình YOLO
@@ -25,7 +32,7 @@ if __name__ == '__main__':
     fps = int(video.get(cv2.CAP_PROP_FPS))
 
     # Định nghĩa codec và tạo đối tượng VideoWriter để ghi video đầu ra
-    fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # Codec cho file mp4
+    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
     output_video = cv2.VideoWriter(output_video_path, fourcc, fps, (frame_width, frame_height))
 
     while True:
